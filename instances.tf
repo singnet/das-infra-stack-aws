@@ -11,12 +11,12 @@ resource "aws_security_group" "allow_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-ingress {
-  from_port   = 8080
-  to_port     = 8080
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port   = 0
@@ -81,10 +81,10 @@ output "instance_ip_redis" {
   value = aws_instance.redis.public_ip
 }
 
-output "instance_ip_openfaas" {
-  value = aws_instance.faas.public_ip
-}
-
 output "instance_ip_mongodb" {
   value = aws_instance.mongodb.public_ip
+}
+
+output "instance_ip_openfaas" {
+  value = aws_instance.faas.public_ip
 }
