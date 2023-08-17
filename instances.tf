@@ -44,16 +44,16 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-# resource "aws_instance" "redis" {
-#   ami                    = data.aws_ami.ubuntu.id
-#   instance_type          = "t2.micro"
-#   key_name               = aws_key_pair.deployer.key_name
-#   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
-#   user_data              = file("./install-redis.sh")
-#   tags = {
-#     Name = "DAS-redis"
-#   }
-# }
+resource "aws_instance" "redis" {
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.deployer.key_name
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  user_data              = file("./install-redis.sh")
+  tags = {
+    Name = "DAS-redis"
+  }
+}
 
 resource "aws_instance" "faas" {
   ami                    = data.aws_ami.ubuntu.id
@@ -66,25 +66,25 @@ resource "aws_instance" "faas" {
   }
 }
 
-# resource "aws_instance" "mongodb" {
-#   ami                    = data.aws_ami.ubuntu.id
-#   instance_type          = "t2.micro"
-#   key_name               = aws_key_pair.deployer.key_name
-#   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
-#   user_data              = file("./install-mongodb.sh")
-#   tags = {
-#     Name = "DAS-mongodb"
-#   }
-# }
+resource "aws_instance" "mongodb" {
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.deployer.key_name
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  user_data              = file("./install-mongodb.sh")
+  tags = {
+    Name = "DAS-mongodb"
+  }
+}
 
-# output "instance_ip_redis" {
-#   value = aws_instance.redis.public_ip
-# }
+output "instance_ip_redis" {
+  value = aws_instance.redis.public_ip
+}
 
 output "instance_ip_openfaas" {
   value = aws_instance.faas.public_ip
 }
 
-# output "instance_ip_mongodb" {
-#   value = aws_instance.mongodb.public_ip
-# }
+output "instance_ip_mongodb" {
+  value = aws_instance.mongodb.public_ip
+}
