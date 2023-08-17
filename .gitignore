@@ -1,0 +1,6 @@
+secret.tf
+tfplan*
+.terraform.lock.hcl
+.terraform/
+modules/*
+id_rsa*
