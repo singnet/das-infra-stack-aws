@@ -59,7 +59,7 @@ resource "aws_iam_policy" "auto_scaling_policy" {
       {
         Effect   = "Allow",
         Action   = "logs:CreateLogGroup",
-        Resource = "arn:aws:logs:us-east-1:038760728819:*"
+        Resource = "arn:aws:logs:${data.aws_region.current.endpoint}:${data.aws_caller_identity.current.account_id}:*"
       },
       {
         Effect = "Allow",

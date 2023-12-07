@@ -5,7 +5,7 @@ lambda_functions = [
 
 cloudwatch_alarms = [
   {
-    name                = "AutomaticScalingOutMemoryDBBasedOnDatabaseMemoryUsagePercentage",
+    name                = "AutomaticScalingOutMemoryDB",
     comparison_operator = "GreaterThanOrEqualToThreshold"
     metric_name         = "DatabaseMemoryUsagePercentage",
     namespace           = "AWS/MemoryDB",
@@ -17,7 +17,7 @@ cloudwatch_alarms = [
     s3_object           = "production/documentdb-scale-out.zip"
   },
   {
-    name                = "AutomaticScalingInMemoryDBBasedOnDatabaseMemoryUsagePercentage",
+    name                = "AutomaticScalingInMemoryDB",
     comparison_operator = "LessThanOrEqualToThreshold"
     metric_name         = "DatabaseMemoryUsagePercentage",
     namespace           = "AWS/MemoryDB",
