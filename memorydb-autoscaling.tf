@@ -36,6 +36,15 @@ resource "aws_cloudwatch_metric_alarm" "memory_usage_scaling_out_alarm" {
   alarm_actions = [aws_sns_topic.memory_db_scaling_topic[count.index].arn]
 }
 
+resource "aws_lambda_permission" "sns_invoke" {
+  count         = length(var.cloudwatch_alarms)
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.auto_scaling[count.index].arn
+  principal     = "sns.amazonaws.com"
+
+  source_arn = aws_sns_topic.memory_db_scaling_topic[count.index].arn
+}
 
 resource "aws_sns_topic_subscription" "lambda_subscription" {
   count     = length(var.cloudwatch_alarms)
