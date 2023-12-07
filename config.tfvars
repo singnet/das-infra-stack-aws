@@ -14,7 +14,7 @@ cloudwatch_alarms = [
     statistic           = "Maximum",
     threshold           = 80
     cluster_name        = "distributed-atom-space",
-    s3_object           = "production/documentdb-scale-out.zip"
+    s3_object           = "production/memorydb-scale-out.zip"
   },
   {
     name                = "AutomaticScalingInMemoryDB",
@@ -26,6 +26,6 @@ cloudwatch_alarms = [
     statistic           = "Maximum",
     threshold           = 50
     cluster_name        = "distributed-atom-space",
-    s3_object           = "production/documentdb-scale-in.zip"
+    s3_object           = "production/memorydb-scale-in.zip"
   },
 ]
